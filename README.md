@@ -1,10 +1,7 @@
 # 🤖 Finory AI Categorizer  
 > **Smart Transaction Categorization – Baseline ML Model**  
 
-[![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)  
-[![Jupyter](https://img.shields.io/badge/Jupyter-Notebooks-orange)](https://jupyter.org/)  
-[![XGBoost](https://img.shields.io/badge/Model-XGBoost-green)](https://xgboost.ai/)  
-[![Status](https://img.shields.io/badge/Status-Baseline%20Ready-yellow)]()  
+[![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)  [![Jupyter](https://img.shields.io/badge/Jupyter-Notebooks-orange)](https://jupyter.org/)  [![XGBoost](https://img.shields.io/badge/Model-XGBoost-green)](https://xgboost.ai/)  [![Status](https://img.shields.io/badge/Status-Baseline%20Ready-yellow)]()  
 
 Finory AI Categorizer is a **baseline machine learning model** that classifies financial transactions (e.g., vendor → category) using **XGBoost**, synthetic training data, and preprocessing pipelines.  
 
