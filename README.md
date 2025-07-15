@@ -122,7 +122,8 @@ Or simply open `load_and_predict.ipynb` for a demo.
 
 ## 🤝 Contributing  
 
-Want to improve the baseline? Fork the repo, make changes, and submit a PR!  
+This project is proprietary and not open for public contributions.  
+For collaboration inquiries, please contact the author directly.  
 
 ---
 
