@@ -15,6 +15,7 @@ This model will be integrated into the **Finory App**, providing **smart transac
 ✅ **Feature engineering** – log-transformed amounts, date features, grouped vendors  
 ✅ **Baseline Models** – Logistic Regression, Random Forest, and XGBoost  
 ✅ **Hyperparameter Tuning** for XGBoost → improved accuracy **~61%**  
+✅ **Hyperparameter Tuning** for Random Forest → improved accuracy **~58%**  
 ✅ **Saved Tuned Model + Label Encoders** for future predictions  
 ✅ `load_and_predict.ipynb` to easily load the model and test predictions  
 ✅ Designed for **future fine-tuning** with real-world Finory App data  
@@ -50,15 +51,17 @@ finory-ai-categorizer/
 
 ## 📊 Baseline Results  
 
-| Model                 | Accuracy | Notes |
-|-----------------------|----------|-------|
-| Logistic Regression   | ~43%     | Weak baseline |
-| Random Forest         | ~52%     | Slight improvement |
-| XGBoost (Default)     | ~53%     | Best baseline |
-| **XGBoost (Tuned)**   | **~61%** | After hyperparameter tuning |
+| Model                | Accuracy | Notes                         |
+|----------------------|---------:|-------------------------------|
+| Logistic Regression  | ~43%     | Weak baseline                 |
+| Random Forest (Default) | ~52%  | Slight improvement            |
+| Random Forest (Tuned)   | ~60%  | Good improvement after tuning |
+| XGBoost (Default)    | ~53%     | Best default baseline         |
+| **XGBoost (Tuned)**  | **~61%** | Best model after tuning       |
 
-✅ Tuned XGBoost chosen as the **initial model** for Finory App  
-✅ Will be retrained later with **real-world transaction data**  
+✅ **Tuned XGBoost chosen as the initial model for Finory App**  
+✅ **Random Forest tuned close to XGBoost but slightly lower**  
+✅ Will be **retrained later with real-world transaction data**
 
 ---
 
