@@ -1,163 +1,137 @@
-# Finory AI Module: Smart Transaction Categorization
+# 🤖 Finory AI Categorizer  
+> **Smart Transaction Categorization – Baseline ML Model**  
 
-## Overview
-This project is part of the **Finory AI Module**, designed to automatically categorize financial transactions based on vendor, amount, payment method, and other metadata.  
-It uses a synthetic dataset of 5,000 transactions to simulate real-world financial data and trains machine learning models for **multi-class classification**.
+[![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)  
+[![Jupyter](https://img.shields.io/badge/Jupyter-Notebooks-orange)](https://jupyter.org/)  
+[![XGBoost](https://img.shields.io/badge/Model-XGBoost-green)](https://xgboost.ai/)  
+[![Status](https://img.shields.io/badge/Status-Baseline%20Ready-yellow)]()  
+
+Finory AI Categorizer is a **baseline machine learning model** that classifies financial transactions (e.g., vendor → category) using **XGBoost**, synthetic training data, and preprocessing pipelines.  
+
+This model will be integrated into the **Finory App**, providing **smart transaction categorization** that improves over time with real user data.
 
 ---
 
-## Project Structure
+## 🚀 Features  
+
+✅ **Synthetic transaction dataset (5,000 rows)** for initial training  
+✅ **Feature engineering** – log-transformed amounts, date features, grouped vendors  
+✅ **Baseline Models** – Logistic Regression, Random Forest, and XGBoost  
+✅ **Hyperparameter Tuning** for XGBoost → improved accuracy **~61%**  
+✅ **Saved Tuned Model + Label Encoders** for future predictions  
+✅ `load_and_predict.ipynb` to easily load the model and test predictions  
+✅ Designed for **future fine-tuning** with real-world Finory App data  
+
+---
+
+## 📂 Project Structure  
 
 ```
+finory-ai-categorizer/
 ├── data/
-│   └── synthetic_finory_transactions.csv   # Synthetic dataset
-├── notebooks/
-│   ├── 01_generate_data.ipynb              # Generates synthetic transaction data
-│   ├── 02_data_exploration.ipynb           # Exploratory data analysis
-│   ├── 03_data_preprocessing.ipynb         # Data cleaning, encoding, and feature engineering
-│   ├── 04_model_training.ipynb             # Baseline model training and evaluation
-│   ├── 05_hyperparameter_tuning.ipynb      # Hyperparameter tuning for Random Forest & XGBoost
-│   └── load_and_predict.ipynb              # Example of loading a saved model for predictions
+│   ├── synthetic_finory_transactions.csv        # Raw synthetic dataset
+│   └── synthetic_finory_preprocessed.csv        # Preprocessed dataset
+│
 ├── models/
-│   └── best_xgb_model.pkl                  # Best tuned XGBoost model saved for later use
-├── requirements.txt                        # Dependencies
-└── README.md                               # Project documentation
+│   ├── finory_baseline_xgb.joblib               # Tuned baseline XGBoost model
+│   └── finory_label_encoders.joblib             # Saved label encoders
+│
+├── notebooks/
+│   ├── 01_data_generation.ipynb                 # Synthetic data creation
+│   ├── 02_data_exploration.ipynb                # Exploratory Data Analysis (EDA)
+│   ├── 03_data_preprocessing.ipynb              # Feature engineering + encoding
+│   ├── 04_model_training.ipynb                  # Baseline ML models
+│   ├── 05_hyperparameter_tuning.ipynb           # XGBoost tuning → ~61% accuracy
+│   ├── load_and_predict.ipynb                   # Load tuned model & predict
+│   └── vendor_mapping.py                        # Vendor → grouped vendor logic
+│
+├── requirements.txt                             # Dependencies
+└── README.md                                    # This file
 ```
 
 ---
 
-## Objective
-The goal is to **predict the category of a financial transaction** using features like vendor, amount, payment method, and date metadata.
+## 📊 Baseline Results  
 
-- **Problem Type:** Multi-class classification  
-- **Target:** `category`  
-- **Example Categories:** Groceries, Electronics, DiningOut, Transportation, etc.
+| Model                 | Accuracy | Notes |
+|-----------------------|----------|-------|
+| Logistic Regression   | ~43%     | Weak baseline |
+| Random Forest         | ~52%     | Slight improvement |
+| XGBoost (Default)     | ~53%     | Best baseline |
+| **XGBoost (Tuned)**   | **~61%** | After hyperparameter tuning |
 
----
-
-## Dataset
-
-**Synthetic dataset with 5,000 samples** containing:
-- `transaction_id`
-- `vendor`
-- `amount`
-- `category` (target)
-- `date`
-- `payment_method`
-- `note`
-
-Additional engineered features:
-- `day_of_week`
-- `month`
-- `amount_log` (normalized transaction amount)
+✅ Tuned XGBoost chosen as the **initial model** for Finory App  
+✅ Will be retrained later with **real-world transaction data**  
 
 ---
 
-## Phases
+## 🔧 Quickstart  
 
-1. **Data Generation** → Created synthetic financial transactions with realistic distributions.
-2. **Data Exploration** → Visualized category and vendor distributions.
-3. **Data Preprocessing** → Encoded vendors, categories, and payment methods. Extracted date features and normalized transaction amounts.
-4. **Model Training** → Trained multiple models (Logistic Regression, Random Forest, XGBoost).
-5. **Hyperparameter Tuning** → Improved Random Forest and XGBoost accuracy via GridSearchCV.
-6. **Model Saving/Loading** → Saved the best-tuned model for future predictions.
+1️⃣ **Clone this repo**  
 
----
+```bash
+git clone https://github.com/<your-username>/finory-ai-categorizer.git
+cd finory-ai-categorizer
+```
 
-## 📊 Model Performance Summary  
-
-| Model                      | Test Accuracy | Notes |
-|----------------------------|--------------:|-------|
-| Logistic Regression        | ~48%          | Baseline linear model |
-| Random Forest (default)    | ~55%          | Non-tuned |
-| XGBoost (default)          | ~53%          | Non-tuned |
-| **Random Forest (tuned)**  | **60%**       | Best tuned parameters via GridSearchCV |
-| **XGBoost (tuned)**        | **59%**       | Best tuned parameters via GridSearchCV |
-
-✅ **Best Models:** Tuned Random Forest & Tuned XGBoost both achieved ~60% accuracy.  
-
----
-
-## Next Steps
-
-- **Vendor Grouping & Category Merging** → Reduce class imbalance and noise.
-- **Incorporate real-world transaction data** to improve generalization.
-- **Deploy model as an API** for integration into the Finory app.
-
----
-
-## Requirements
-
-Install dependencies:
+2️⃣ **Install dependencies**  
 
 ```bash
 pip install -r requirements.txt
 ```
 
----
+3️⃣ **Run notebooks**  
 
-## How to Run
+Start Jupyter and open any notebook:  
 
-1. **Clone the repo**
 ```bash
-git clone <your-repo-url>
-cd finory-ai-module
+jupyter lab
 ```
 
-2. **Generate synthetic data**
-```bash
-jupyter notebook notebooks/01_generate_data.ipynb
-```
+For example:  
+- `03_data_preprocessing.ipynb` → preprocess raw data  
+- `04_model_training.ipynb` → train baseline models  
+- `05_hyperparameter_tuning.ipynb` → tune XGBoost  
 
-3. **Explore & preprocess**
-```bash
-jupyter notebook notebooks/02_data_exploration.ipynb
-jupyter notebook notebooks/03_data_preprocessing.ipynb
-```
-
-4. **Train models**
-```bash
-jupyter notebook notebooks/04_model_training.ipynb
-```
-
-5. **Run hyperparameter tuning**
-```bash
-jupyter notebook notebooks/05_hyperparameter_tuning.ipynb
-```
-
-6. **Load saved model for predictions**
-```bash
-jupyter notebook notebooks/load_and_predict.ipynb
-```
-
----
-
-## Saving & Loading the Best Model
-
-After hyperparameter tuning, we saved the **best XGBoost model** like this:
+4️⃣ **Load the tuned model for predictions**  
 
 ```python
 import joblib
-joblib.dump(best_xgb, "../models/best_xgb_model.pkl")
+
+# Load model & encoders
+model = joblib.load("models/finory_baseline_xgb.joblib")
+encoders = joblib.load("models/finory_label_encoders.joblib")
+
+# Predict on new transaction samples
+predictions = model.predict(X_new)
 ```
 
-Later, you can load it for predictions:
-
-```python
-best_model = joblib.load("../models/best_xgb_model.pkl")
-predictions = best_model.predict(X_new)
-```
+Or simply open `load_and_predict.ipynb` for a demo.
 
 ---
 
-## Key Takeaways
+## 🔮 Future Improvements  
 
-- Synthetic data provides a realistic sandbox for **multi-class categorization**.
-- Feature engineering (vendor encoding, date extraction, amount normalization) is critical.
-- Hyperparameter tuning can boost accuracy by **~7%** compared to default models.
-- This module will later integrate into **Finory**, enabling AI-driven smart categorization.
+✅ Collect **real transaction data** from Finory App  
+✅ Retrain & fine-tune model with live data  
+✅ Add **deep learning (LSTM/NLP)** for merchant name understanding  
+✅ Deploy as a **REST API** or lightweight **on-device ML model**  
+✅ Continuous learning loop (active learning with user corrections)
 
 ---
+
+## 🤝 Contributing  
+
+Want to improve the baseline? Fork the repo, make changes, and submit a PR!  
+
+---
+
+## 📜 License  
+
+This project is proprietary and intended for integration into the Finory app.  
+**All rights reserved.**  
+
+You may not copy, modify, merge, publish, distribute, sublicense, or sell copies of this software without explicit written permission from the author.  
 
 **Author:** Philip Haapala  
 **Part of:** AI Portfolio Projects for Smart Finance Applications 
